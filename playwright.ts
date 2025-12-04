@@ -1,18 +1,20 @@
 import { chromium } from "playwright";
 
 async function main() {
+  console.log("Script starting...");
   const browser = await chromium.launch({ headless: false });
+  console.log("Browser launched");
   const page = await browser.newPage();
+  console.log("Page created");
 
-  // Go to Google
   await page.goto("https://google.com");
-
-  // Type in the search box
+  console.log("Navigated to Google");
   await page.fill('input[name="q"]', "hello world");
-  // Keep browser open for 10 seconds
+  console.log("Text typed");
   await page.waitForTimeout(10000);
 
   await browser.close();
+  console.log("Done");
 }
 
 main();
